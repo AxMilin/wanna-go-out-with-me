@@ -16,7 +16,26 @@
                 <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
                 <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
                 <script>
+                    function sendWebhookMessage(message) {
+                        const webhookUrl = "YOUR DISCORD WEBHOOK URL";
+                        const data = {
+                            content: message
+                        };
+                
+                        fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data),
+                        })
+                        .then(response => response.json())
+                        .then(data => console.log('Webhook sent:', data))
+                        .catch(error => console.error('Error sending webhook:', error));
+                    }
+                    
                     function nextPage() {
+                        sendWebhookMessage("he/she said yes"); // in case if you don't wanna send discord webhook then delete this line ;)
                         window.location.href = "yes.html";
                     }
                     
